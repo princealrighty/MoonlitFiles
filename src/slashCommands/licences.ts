@@ -18,8 +18,9 @@ const command: SlashCommand = {
 
     try {
       const userPromptEmbed = new EmbedBuilder()
-        .setColor('#7CFC00');
-      
+        .setColor('#7CFC00')
+        .setDescription("Please provide your Discord user ID.");
+
       const userPrompt = await interaction.reply({ embeds: [userPromptEmbed] });
       let userPromptResolved = false;
 
