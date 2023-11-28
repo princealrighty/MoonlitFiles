@@ -78,8 +78,9 @@ const command: SlashCommand = {
 
       const embed = new EmbedBuilder()
         .setAuthor({
-          name: 'Licences',
+          name: 'Command Ran: /licenses',
         })
+        .setTitle('Licenses Retrieved!'
         .setColor('#7CFC00')
         .setDescription(`User ID: ${discordUserID}\n\n`);
       console.log(results)
@@ -102,9 +103,9 @@ const command: SlashCommand = {
 
 function getProductName(productID: string): string {
   const productNames: Record<string, string> = {
-    "jmv11xsoerulfnqesuvzppefkdyr": "Starter",
-    "ud25jbxr5shnud8qbyitrc6j70jx": "CodeCraft",
-    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced admin logger",
+    "jmv11xsoerulfnqesuvzppefkdyr": "Beginner Bundle",
+    "ud25jbxr5shnud8qbyitrc6j70jx": "CodeCraft Code Generator",
+    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced Admin Logger",
   };
 
   return productNames[productID] || productID;
