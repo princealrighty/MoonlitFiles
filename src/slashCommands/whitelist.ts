@@ -20,12 +20,14 @@ const command: SlashCommand = {
       return option
         .setName("user")
         .setDescription("Discord User ID")
+        .setFooter({ text: "Unified Licensing" }),
         .setRequired(true);
     })
     .addStringOption(option => {
       return option
         .setName("product")
         .setDescription("Product name")
+        .setFooter({ text: "Unified Licensing" }),
         .setRequired(true)
         .setAutocomplete(true);
     })
