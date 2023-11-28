@@ -19,7 +19,7 @@ const command: SlashCommand = {
     .addStringOption(option => {
       return option
         .setName("user")
-        .setDescription("Discord_User_ID")
+        .setDescription("Discord User ID")
         .setRequired(true);
     })
     .addStringOption(option => {
@@ -52,6 +52,7 @@ const command: SlashCommand = {
       );
 
       const { robloxID } = response.data;
+      console.log(selectedProduct)
 
       const ackMessage = await interaction.reply("Whitelisting in progress...");
 
@@ -70,12 +71,14 @@ const command: SlashCommand = {
       );
 
       const updatedMessage = `Whitelisted player ${discordUserID} for ${getProductName(selectedProduct)}`;
+      console.log(updatedMessage)
       await interaction.editReply({
         content: updatedMessage,
         embeds: [],
       });
-    } catch (error) {
-      console.error("Error replying to interaction:", error.message);
+    } catch (productID) {
+      await interaction.editReply("Error replying to interaction, server **DOWN**")
+      console.error("Error replying to interaction:", productID, selectedProduct);
     }
   },
   cooldown: 10,

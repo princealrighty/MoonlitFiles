@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 type colorType = "text" | "variable" | "error"
 
 const themeColors = {
-    text: "#ff8e4d",
+    text: "#616161",
     variable: "#ff624d",
     error: "#f5426c"
 }

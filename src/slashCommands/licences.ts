@@ -82,7 +82,7 @@ const command: SlashCommand = {
         })
         .setColor('#7CFC00')
         .setDescription(`User ID: ${discordUserID}\n\n`);
-
+      console.log(results)
       for (const result of results) {
         embed.addFields({
           name: `Product ${getProductName(result.productID)}`,
@@ -92,6 +92,7 @@ const command: SlashCommand = {
       }
 
       await interaction.reply({ embeds: [embed] });
+      console.log(results)
     } catch (error) {
       console.error("Error replying to interaction:", error.message);
     }
