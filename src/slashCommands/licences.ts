@@ -80,7 +80,7 @@ const command: SlashCommand = {
         .setAuthor({
           name: 'Command Ran: /licenses',
         })
-        .setTitle('Licenses Retrieved!'
+        .setTitle('Licenses Retrieved!')
         .setColor('#7CFC00')
         .setDescription(`User ID: ${discordUserID}\n\n`);
       console.log(results)

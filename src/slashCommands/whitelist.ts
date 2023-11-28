@@ -20,14 +20,12 @@ const command: SlashCommand = {
       return option
         .setName("user")
         .setDescription("Discord User ID")
-        .setFooter({ text: "Unified Licensing" }),
         .setRequired(true);
     })
     .addStringOption(option => {
       return option
         .setName("product")
         .setDescription("Product name")
-        .setFooter({ text: "Unified Licensing" }),
         .setRequired(true)
         .setAutocomplete(true);
     })
@@ -76,7 +74,7 @@ const command: SlashCommand = {
       console.log(updatedMessage)
       await interaction.editReply({
         content: updatedMessage,
-        embeds: [],
+        embeds: [new EmbedBuilder().setFooter({ text: "Unified Licensing" })],
       });
     } catch (productID) {
       await interaction.editReply("Error replying to interaction, server **DOWN**")
