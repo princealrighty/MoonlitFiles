@@ -1,31 +1,40 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, Message, EmbedBuilder } from 'discord.js';
+import { config } from 'dotenv';
+config();
+
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import axios from 'axios';
 import { getThemeColor } from '../functions';
 import { SlashCommand } from "../types";
 
 const bloxlinkAPIKey = process.env.BLOXLINK_API_KEY || '';
-const parcelAPIURL = 'https://papi.parcelroblox.com/whitelist/check';
+const parcelAPIURL = 'https://papi.parcelroblox.com/whitelist/add';
 const parcelAPIKey = process.env.PARCEL_API_KEY || '';
 const serverID = process.env.SERVER_ID || '';
 const productIDs = ["jmv11xsoerulfnqesuvzppefkdyr", "ud25jbxr5shnud8qbyitrc6j70jx", "qt7zj3codgtw2xyo8aaz6xdsrbrb"];
-
 const whitelist = ["1040722410070093825", "1095116890361315478"];
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
-    .setName('licences')
+    .setName('whitelist')
     .addStringOption(option => {
       return option
         .setName("user")
         .setDescription("Discord_User_ID")
+        .setRequired(true);
+    })
+    .addStringOption(option => {
+      return option
+        .setName("product")
+        .setDescription("Product name")
         .setRequired(true)
-    })    
-    .setDescription("Gets the users licences"),
+        .setAutocomplete(true);
+    })
+    .setDescription("Whitelist a user for a specific product"),
   execute: async (interaction: ChatInputCommandInteraction) => {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
     const discordUserID = interaction.options.getString("user", true);
-    console.log("Trying")
+    const selectedProduct = interaction.options.getString("product", true);
 
     if (!whitelist.includes(interaction.user.id)) {
       await interaction.reply("You are not authorized to use this command.");
@@ -43,55 +52,28 @@ const command: SlashCommand = {
       );
 
       const { robloxID } = response.data;
-      const results = [];
-      console.log("Bloxlink back")
 
-      for (const productID of productIDs) {
-        try {
-          const parcelResponse = await axios.post(
-            parcelAPIURL,
-            {
-              productID,
-              robloxID,
-            },
-            {
-              headers: {
-                "Content-Type": "application/json",
-                "hub-secret-key": parcelAPIKey,
-              },
-            }
-          );
+      const ackMessage = await interaction.reply("Whitelisting in progress...");
 
-          results.push({
-            productID,
-            success: true,
-            data: parcelResponse.data,
-          });
-        } catch (error) {
-          results.push({
-            productID,
-            success: false,
-            error: error.message,
-          });
+      await axios.post(
+        parcelAPIURL,
+        {
+          productID: selectedProduct,
+          robloxID,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "hub-secret-key": parcelAPIKey,
+          },
         }
-      }
+      );
 
-      const embed = new EmbedBuilder()
-        .setAuthor({
-          name: 'Licences',
-        })
-        .setColor('#7CFC00')
-        .setDescription(`User ID: ${discordUserID}\n\n`);
-
-      for (const result of results) {
-        embed.addFields({
-          name: `Product ${getProductName(result.productID)}`,
-          value: result.success ? "✅" : "❌",
-          inline: false,
-        });
-      }
-
-      await interaction.reply({ embeds: [embed] });
+      const updatedMessage = `Whitelisted player ${discordUserID} for ${getProductName(selectedProduct)}`;
+      await interaction.editReply({
+        content: updatedMessage,
+        embeds: [],
+      });
     } catch (error) {
       console.error("Error replying to interaction:", error.message);
     }
