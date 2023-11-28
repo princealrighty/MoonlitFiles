@@ -12,7 +12,7 @@ const command: SlashCommand = {
         new EmbedBuilder()
           .setAuthor({ name: "Command Ran: /ping" })
           .setTitle(`US: License Bot Ping`)
-          .setDescription(`🏓 Pong! \n 📡 Ping: ${interaction.client.ws.ping}`)
+          .setDescription(`Unfortunately, I cannot play Ping Pong! But heres my Latency! \n 🏓 Pong! \n 📡 Ping: ${interaction.client.ws.ping}`)
           .setColor(getThemeColor("text"))
           .setFooter({ text: "Unified Licensing" }),
       ],
