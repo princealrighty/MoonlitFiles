@@ -11,9 +11,11 @@ const command : SlashCommand = {
         interaction.reply({
             embeds: [
                 new EmbedBuilder()
-                .setAuthor({name: "Unified Licenses"})
+                .setAuthor({name: "Command Ran: /ping"})
+                .setTitle(`US: License Bot Ping`)
                 .setDescription(`🏓 Pong! \n 📡 Ping: ${interaction.client.ws.ping}`)
                 .setColor(getThemeColor("text"))
+                .setFooter(`Unified Licensing`)
             ]
         })
     },
