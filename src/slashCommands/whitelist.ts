@@ -111,4 +111,17 @@ const command: SlashCommand = {
   cooldown: 10,
 };
 
+<<<<<<< HEAD
+=======
+function getProductName(productID: string): string {
+  const productNames: Record<string, string> = {
+    "jmv11xsoerulfnqesuvzppefkdyr": "Beginner Bundle",
+    "ud25jbxr5shnud8qbyitrc6j70jx": "CodeCraft",
+    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced Admin Logger",
+  };
+
+  return productNames[productID] || productID;
+}
+
+>>>>>>> ab141a626b39581b2394622db9a9951118581bea
 export default command;
