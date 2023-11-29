@@ -43,9 +43,9 @@ const command: SlashCommand = {
     // Function to get the product ID based on the product name
     function getProductId(productName: string): string | undefined {
       const productNames: Record<string, string> = {
-        "Starter": "jmv11xsoerulfnqesuvzppefkdyr",
+        "Beginner Bundle": "jmv11xsoerulfnqesuvzppefkdyr",
         "CodeCraft": "ud25jbxr5shnud8qbyitrc6j70jx",
-        "Advanced admin logger": "qt7zj3codgtw2xyo8aaz6xdsrbrb",
+        "Advanced Admin Logger": "qt7zj3codgtw2xyo8aaz6xdsrbrb",
       };
 
       return productNames[productName];
