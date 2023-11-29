@@ -40,12 +40,11 @@ const command: SlashCommand = {
       return;
     }
 
-    // Function to get the product ID based on the product name
     function getProductId(productName: string): string | undefined {
       const productNames: Record<string, string> = {
-        "Starter": "jmv11xsoerulfnqesuvzppefkdyr",
+        "Beginner Bundle": "jmv11xsoerulfnqesuvzppefkdyr",
         "CodeCraft": "ud25jbxr5shnud8qbyitrc6j70jx",
-        "Advanced admin logger": "qt7zj3codgtw2xyo8aaz6xdsrbrb",
+        "Advanced Admin Logger": "qt7zj3codgtw2xyo8aaz6xdsrbrb",
       };
 
       return productNames[productName];
@@ -54,7 +53,6 @@ const command: SlashCommand = {
     const selectedProductID = getProductId(selectedProduct);
 
     if (!selectedProductID) {
-      // Handle the case where the product name is not recognized
       await interaction.reply("Invalid product name.");
       return;
     }
@@ -93,15 +91,11 @@ const command: SlashCommand = {
       });
     } catch (error) {
       if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
         console.error("Parcel API error - Status:", error.response.status);
         console.error("Parcel API error - Data:", error.response.data);
       } else if (error.request) {
-        // The request was made but no response was received
         console.error("Parcel API error - No response received");
       } else {
-        // Something happened in setting up the request that triggered an Error
         console.error("Parcel API error - Request setup:", error.message);
       }
 
@@ -111,17 +105,4 @@ const command: SlashCommand = {
   cooldown: 10,
 };
 
-<<<<<<< HEAD
-=======
-function getProductName(productID: string): string {
-  const productNames: Record<string, string> = {
-    "jmv11xsoerulfnqesuvzppefkdyr": "Beginner Bundle",
-    "ud25jbxr5shnud8qbyitrc6j70jx": "CodeCraft",
-    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced Admin Logger",
-  };
-
-  return productNames[productID] || productID;
-}
-
->>>>>>> ab141a626b39581b2394622db9a9951118581bea
 export default command;
