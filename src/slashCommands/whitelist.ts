@@ -10,7 +10,7 @@ const bloxlinkAPIKey = process.env.BLOXLINK_API_KEY || '';
 const parcelAPIURL = 'https://papi.parcelroblox.com/whitelist/add';
 const parcelAPIKey = process.env.PARCEL_API_KEY || '';
 const serverID = process.env.SERVER_ID || '';
-const whitelist = ["1040722410070093825", "1095116890361315478"];
+const whitelist = ["1040722410070093825", "1095116890361315478", "428925948818227201"];
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
