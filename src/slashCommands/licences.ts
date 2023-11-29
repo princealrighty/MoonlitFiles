@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, ChatInputCommandInteraction, Message, EmbedBuilder } from 'discord.js';
+import { SlashCommandBuilder, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import axios from 'axios';
 import { getThemeColor } from '../functions';
 import { SlashCommand } from "../types";
@@ -25,7 +25,6 @@ const command: SlashCommand = {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
     const discordUserID = interaction.options.getString("user", true);
-    console.log("Trying")
 
     if (!whitelist.includes(interaction.user.id)) {
       await interaction.reply("You are not authorized to use this command.");
@@ -44,7 +43,6 @@ const command: SlashCommand = {
 
       const { robloxID } = response.data;
       const results = [];
-      console.log("Bloxlink back")
 
       for (const productID of productIDs) {
         try {
@@ -62,10 +60,13 @@ const command: SlashCommand = {
             }
           );
 
+          const productName = getProductName(productID);
+          const isWhitelisted = parcelResponse.data.data.owned;
+
           results.push({
             productID,
             success: true,
-            data: parcelResponse.data,
+            isWhitelisted,
           });
         } catch (error) {
           results.push({
@@ -83,17 +84,16 @@ const command: SlashCommand = {
         .setTitle('Licenses Retrieved!')
         .setColor('#7CFC00')
         .setDescription(`User ID: ${discordUserID}\n\n`);
-      console.log(results)
+
       for (const result of results) {
         embed.addFields({
-          name: `Product ${getProductName(result.productID)}`,
-          value: result.success ? "✅" : "❌",
+          name: `${getProductName(result.productID)}`,
+          value: result.success ? (result.isWhitelisted ? "✅ Whitelisted" : "❌ Not Whitelisted") : "❌ Error",
           inline: false,
         });
       }
 
       await interaction.reply({ embeds: [embed] });
-      console.log(results)
     } catch (error) {
       console.error("Error replying to interaction:", error.message);
     }

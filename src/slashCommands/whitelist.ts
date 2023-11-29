@@ -85,7 +85,7 @@ const command: SlashCommand = {
         }
       );
 
-      const updatedMessage = `Whitelisted player (${discordUserID}) for ${selectedProduct}`;
+      const updatedMessage = `Whitelisted player (${robloxID}) for ${selectedProduct}`;
       await interaction.editReply({
         content: updatedMessage,
       });
