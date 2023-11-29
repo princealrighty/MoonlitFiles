@@ -86,9 +86,9 @@ const command: SlashCommand = {
 
 function getProductName(productID: string): string {
   const productNames: Record<string, string> = {
-    "jmv11xsoerulfnqesuvzppefkdyr": "Starter",
+    "jmv11xsoerulfnqesuvzppefkdyr": "Beginner Bundle",
     "ud25jbxr5shnud8qbyitrc6j70jx": "CodeCraft",
-    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced admin logger",
+    "qt7zj3codgtw2xyo8aaz6xdsrbrb": "Advanced Admin Logger",
   };
 
   return productNames[productID] || productID;
