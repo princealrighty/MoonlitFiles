@@ -28,7 +28,7 @@ const command: SlashCommand = {
         .setRequired(true)
         .setAutocomplete(true);
     })
-    .setDescription("Whitelist a user for a specific product"),
+    .setDescription("Grant specified user a Whitelist to a specified product"),
   execute: async (interaction: ChatInputCommandInteraction) => {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
