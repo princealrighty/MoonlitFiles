@@ -20,7 +20,7 @@ const command: SlashCommand = {
         .setDescription("Discord_User_ID")
         .setRequired(true)
     })    
-    .setDescription("Gets the users licences"),
+    .setDescription("Fetches & Provides provided users licenses"),
   execute: async (interaction: ChatInputCommandInteraction) => {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
