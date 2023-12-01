@@ -28,7 +28,7 @@ const command: SlashCommand = {
         .setRequired(true)
         .setAutocomplete(true);
     })
-    .setDescription("Revokes a user's licences, for a specific product"),
+    .setDescription("Revokes said User's License to the stated Product."),
   execute: async (interaction: ChatInputCommandInteraction) => {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
