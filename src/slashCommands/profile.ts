@@ -12,7 +12,7 @@ const productIDs = ["jmv11xsoerulfnqesuvzppefkdyr", "ud25jbxr5shnud8qbyitrc6j70j
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
     .setName('profile')  
-    .setDescription("Gets your licences"),
+    .setDescription("Provides your Licenses & Information about your Profile"),
   execute: async (interaction: ChatInputCommandInteraction) => {
     if (!interaction || !interaction.member || !interaction.guild) return;
 
