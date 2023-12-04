@@ -9,7 +9,7 @@ const parcelAPIKey = process.env.PARCEL_API_KEY || '';
 const serverID = process.env.SERVER_ID || '';
 const productIDs = ["jmv11xsoerulfnqesuvzppefkdyr", "ud25jbxr5shnud8qbyitrc6j70jx", "qt7zj3codgtw2xyo8aaz6xdsrbrb"];
 
-const whitelist = ["1040722410070093825", "1095116890361315478", "428925948818227201"];
+const whitelist = ["1040722410070093825", "1095116890361315478", "428925948818227201", "717403465785016375"];
 
 const command: SlashCommand = {
   command: new SlashCommandBuilder()
