@@ -11,10 +11,10 @@ const command: SlashCommand = {
       embeds: [
         new EmbedBuilder()
           .setAuthor({ name: "Command Ran: /ping" })
-          .setTitle(`US: License Bot Ping`)
+          .setTitle(`MS: License Bot Ping`)
           .setDescription(`Unfortunately, I cannot play Ping Pong! But heres my Latency! \n \n 🏓 Pong! \n 📡 Ping: ${interaction.client.ws.ping}`)
           .setColor(getThemeColor("text"))
-          .setFooter({ text: "Unified Licensing" }),
+          .setFooter({ text: Moonlit Files" }),
       ],
     });
   },
